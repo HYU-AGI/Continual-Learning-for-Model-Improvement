@@ -12,3 +12,4 @@ lr: 1e-5
 batch_size: 4
 
 prompt_type: auto
+save_ckpt: true
