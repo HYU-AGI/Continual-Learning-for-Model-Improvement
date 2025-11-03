@@ -1,0 +1,36 @@
+Looking in indexes: https://pypi.org/simple, https://pypi.ngc.nvidia.com
+Requirement already satisfied: transformers in /opt/conda/lib/python3.8/site-packages (4.42.4)
+Collecting transformers
+  Downloading transformers-4.46.3-py3-none-any.whl.metadata (44 kB)
+Requirement already satisfied: filelock in /opt/conda/lib/python3.8/site-packages (from transformers) (3.6.0)
+Requirement already satisfied: huggingface-hub<1.0,>=0.23.2 in /opt/conda/lib/python3.8/site-packages (from transformers) (0.24.5)
+Requirement already satisfied: numpy>=1.17 in /opt/conda/lib/python3.8/site-packages (from transformers) (1.22.3)
+Requirement already satisfied: packaging>=20.0 in /opt/conda/lib/python3.8/site-packages (from transformers) (21.3)
+Requirement already satisfied: pyyaml>=5.1 in /opt/conda/lib/python3.8/site-packages (from transformers) (6.0)
+Requirement already satisfied: regex!=2019.12.17 in /opt/conda/lib/python3.8/site-packages (from transformers) (2022.4.24)
+Requirement already satisfied: requests in /opt/conda/lib/python3.8/site-packages (from transformers) (2.27.1)
+Collecting tokenizers<0.21,>=0.20 (from transformers)
+  Downloading tokenizers-0.20.3-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.7 kB)
+Requirement already satisfied: safetensors>=0.4.1 in /opt/conda/lib/python3.8/site-packages (from transformers) (0.4.3)
+Requirement already satisfied: tqdm>=4.27 in /opt/conda/lib/python3.8/site-packages (from transformers) (4.65.0)
+Requirement already satisfied: fsspec>=2023.5.0 in /opt/conda/lib/python3.8/site-packages (from huggingface-hub<1.0,>=0.23.2->transformers) (2024.6.1)
+Requirement already satisfied: typing-extensions>=3.7.4.3 in /opt/conda/lib/python3.8/site-packages (from huggingface-hub<1.0,>=0.23.2->transformers) (4.2.0)
+Requirement already satisfied: pyparsing!=3.0.5,>=2.0.2 in /opt/conda/lib/python3.8/site-packages (from packaging>=20.0->transformers) (3.0.8)
+Requirement already satisfied: urllib3<1.27,>=1.21.1 in /opt/conda/lib/python3.8/site-packages (from requests->transformers) (1.26.16)
+Requirement already satisfied: certifi>=2017.4.17 in /opt/conda/lib/python3.8/site-packages (from requests->transformers) (2021.10.8)
+Requirement already satisfied: charset-normalizer~=2.0.0 in /opt/conda/lib/python3.8/site-packages (from requests->transformers) (2.0.12)
+Requirement already satisfied: idna<4,>=2.5 in /opt/conda/lib/python3.8/site-packages (from requests->transformers) (3.3)
+Downloading transformers-4.46.3-py3-none-any.whl (10.0 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 10.0/10.0 MB 36.6 MB/s eta 0:00:00
+Downloading tokenizers-0.20.3-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.0 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.0/3.0 MB 44.5 MB/s eta 0:00:00
+Installing collected packages: tokenizers, transformers
+  Attempting uninstall: tokenizers
+    Found existing installation: tokenizers 0.19.1
+    Uninstalling tokenizers-0.19.1:
+      Successfully uninstalled tokenizers-0.19.1
+  Attempting uninstall: transformers
+    Found existing installation: transformers 4.42.4
+    Uninstalling transformers-4.42.4:
+      Successfully uninstalled transformers-4.42.4
+Successfully installed tokenizers-0.20.3 transformers-4.46.3

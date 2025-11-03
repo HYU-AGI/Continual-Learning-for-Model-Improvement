@@ -1,0 +1,22 @@
+il_mode: CIL
+
+dataset: banking77_task7
+classification_type: sentence-level
+
+backbone_type: generative
+backbone_extract_token: last_token
+
+method: SEQ
+SEQ_peft_type: LoRA
+
+# LoRA 설정 추가
+PEFT_lora_r: 8
+PEFT_lora_alpha: 16
+PEFT_lora_dropout: 0.05
+PEFT_lora_bias: "none"
+PEFT_lora_target_modules: ["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"]
+
+lr: 1e-5
+batch_size: 1
+
+prompt_type: auto

@@ -1,0 +1,42 @@
+# LM Head CIL finetuning 전용 파라미터
+lm_head_finetune: true
+
+# learning schedule
+lm_head_lr: 5e-5
+lm_head_epochs: 3
+
+# representation–embedding alignment
+use_alignment: true
+alignment_mode: cosine
+align_weight: 0.5
+
+# contrastive alignment
+use_contrastive: true
+contrastive_weight: 1.0
+temperature: 0.07
+
+# logit matching
+use_logit_matching: true
+target_token_logit: 10.0
+other_token_logit: 0.0
+logit_match_weight: 0.5
+
+# deep supervision (logit lens)
+use_deep_supervision: true
+supervision_layers: [4, 8, 12]
+ds_weight: 0.2
+
+# knowledge distillation
+use_distillation: true
+kd_weight: 1.0
+kd_temperature: 2.0
+
+# EWC regularization
+use_ewc: true
+ewc_importance: 0.1
+
+# logging / evaluation
+info_per_steps: 100
+evaluate_after_task: true
+save_lm_head: true
+dump_path: ./runs/myexp_seq/lm_head
