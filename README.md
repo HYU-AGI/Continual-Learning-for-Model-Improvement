@@ -41,16 +41,16 @@ assistant > organization related: founded by
 
 이 프로젝트의 Continual Learning은 2단계 학습 과정을 통해 모델의 점진적 학습을 구현합니다:
 
-### 1️⃣ 초기 Backbone 학습 단계
-- 첫 번째 학습 단계에서는 모델의 backbone 부분만 학습됩니다
-- 이는 기본적인 특징 추출(feature extraction)과 표현 학습(representation learning)을 위한 단계입니다
-- backbone은 모델의 핵심 아키텍처로, 입력 데이터의 주요 특징을 학습합니다
+### 1️⃣ 공동 학습 단계 (Backbone + LM Head)
+- 첫 번째 학습 단계에서는 backbone과 LM Head를 함께 학습합니다
+- 목적: backbone은 일반적 표현을 업데이트하고, LM Head는 해당 표현을 출력(언어모델링/태스크)으로 매핑하도록 함께 적합됩니다
+- 데이터: 두 번째 단계와 동일한 데이터로 학습합니다
 
-### 2️⃣ Language Model Head 학습 단계
-- 두 번째 단계에서는 이전에 학습된 backbone은 고정(freeze)됩니다
-- 이 단계에서는 Language Model Head만 학습이 진행됩니다
-- LM Head는 이전 단계에서 학습된 특징을 바탕으로 새로운 태스크에 적응합니다
-- backbone을 고정함으로써 이전 학습된 지식을 보존하면서 새로운 지식을 습득할 수 있습니다
+### 2️⃣ LM Head 단독 미세조정 단계 (Backbone freeze)
+- 두 번째 단계에서는 backbone을 고정(freeze)하고 LM Head만 미세조정합니다
+- 데이터: 1단계와 동일한 데이터로 학습합니다
+- 이유: catastrophic forgetting은 주로 LM Head에서 발생하는 경향이 있어, backbone의 기존 지식을 보존하면서 LM Head만 안정적으로 재적합하기 위함입니다
+- 효과: backbone의 일반 지식 보존, LM Head의 망각 완화, 전반적 성능과 안정성 향상
 
 ### 💡 장점
 - 파국적 망각(Catastrophic Forgetting) 방지
