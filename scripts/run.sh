@@ -1,0 +1,2 @@
+python ./src/main_CL.py --exp_prefix {your-experiment-name} --cfg './config/CIL/generative_backbones/tacred_task8/SEQ_full.yaml' --backbone EleutherAI/pythia-410m-deduped --classifier CosineLinear --training_epochs 5 --is_probing True
+python ./src/main_CL.py --exp_prefix {your-experiment-name} --cfg './config/CIL/generative_backbones/tacred_task8/L2KD.yaml' --backbone EleutherAI/pythia-410m-deduped --training_epochs 3 --lm_head_finetune --lm_head_lr 3e-5 --lm_head_epochs 2 --use_alignment False --use_contrastive False
