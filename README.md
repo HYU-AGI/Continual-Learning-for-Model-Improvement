@@ -53,7 +53,7 @@ assistant > organization related: founded by
 - backbone을 고정함으로써 이전 학습된 지식을 보존하면서 새로운 지식을 습득할 수 있습니다
 
 ### 💡 장점
-- 파국적 망각(Catastrophic Forgetting) 방지: backbone 고정을 통해 이전 학습된 지식 보존
+- 파국적 망각(Catastrophic Forgetting) 방지
 - 효율적인 학습: 전체 모델이 아닌 일부분만 학습하여 계산 효율성 향상
 - 안정적인 성능: 기존 지식을 유지하면서 새로운 태스크 학습 가능
 
