@@ -5,20 +5,67 @@
 
 ## ⚙️ Requirements
 To install requirements:
-```
+```bash
 conda create -n ilvenv python=3.11.10
 conda activate ilvenv
 pip install -r requirements.txt
 ```
 
+**Important Notes:**
+- Python 3.11.10 recommended for compatibility with all dependencies
+- torch==2.3.1 will be installed from requirements.txt
+- For custom GPU selection, set CUDA_VISIBLE_DEVICES environment variable:
+  ```bash
+  CUDA_VISIBLE_DEVICES=0,1 python ./src/main_CL.py ...
+  ```
+
 ## 💻 Running Continual-Learning
-### Step 1. 준비된 데이터셋으로 Continual Learning 진행
+
+### Configuration Parameters
+The framework supports various continual learning modes and methods:
+
+**Incremental Learning Modes:**
+- `CIL`: Class Incremental Learning (new classes added over time)
+- `TIL`: Task Incremental Learning (task ID provided during inference)
+- `IIL`: Instance Incremental Learning (data distribution shifts)
+
+**Key Parameters:**
+- `--cfg`: Path to YAML configuration file (e.g., `./config/CIL/generative_backbones/tacred_task8/SEQ_full.yaml`)
+- `--backbone`: Model name (e.g., `EleutherAI/pythia-410m-deduped`, `meta-llama/Llama-3.2-1B`)
+- `--classifier`: Classifier type (`CosineLinear`, `Linear`, or `None`)
+- `--training_epochs`: Number of training epochs per task
+- `--lm_head_finetune`: Enable LM head-only finetuning stage
+- `--is_probing`: Enable probing evaluation at each step
+
+**Example Commands:**
+```bash
+# Sequential learning (SEQ) baseline
+python ./src/main_CL.py \
+  --exp_prefix my-experiment \
+  --cfg './config/CIL/generative_backbones/tacred_task8/SEQ_full.yaml' \
+  --backbone EleutherAI/pythia-410m-deduped \
+  --classifier CosineLinear \
+  --training_epochs 5 \
+  --is_probing True
+
+# Learning without Forgetting (L2KD) with LM head finetuning
+python ./src/main_CL.py \
+  --exp_prefix my-l2kd-experiment \
+  --cfg './config/CIL/generative_backbones/tacred_task8/L2KD.yaml' \
+  --backbone EleutherAI/pythia-410m-deduped \
+  --training_epochs 3 \
+  --lm_head_finetune \
+  --lm_head_lr 3e-5 \
+  --lm_head_epochs 2
 ```
+
+### Step 1. 준비된 데이터셋으로 Continual Learning 진행
+```bash
 ./scripts/run.sh
 ```
 
 ### Step 2. 학습된 모델 테스트
-```
+```bash
 ./scripts/chatting.sh
 ```
 
