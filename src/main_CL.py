@@ -2,8 +2,6 @@
 Implements Incremental Learning procedure.
 """
 import os,sys
-os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
-os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 # PyTorch 초기화 전에 환경 변수 설정
 os.environ['TOKENIZERS_PARALLELISM'] = 'false'
 # CUDA 메모리 할당 설정을 안전하게 설정
@@ -33,12 +31,6 @@ import time
 import numpy as np
 import random
 import wandb
-
-# ---------------------- only for debug -----------------------
-# import os
-# os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
-# os.environ["CUDA_VISIBLE_DEVICES"] = "1"
-# -------------------------------------------------------------
 
 from utils.logger import init_experiment
 from utils.dataset import get_dataset
