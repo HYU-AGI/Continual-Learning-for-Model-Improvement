@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import os
-os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
-os.environ["CUDA_VISIBLE_DEVICES"] = "7"
+# os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
+# os.environ["CUDA_VISIBLE_DEVICES"] = "7"
 import argparse, re, sys, glob
 import torch
 from typing import List, Dict, Tuple
@@ -113,6 +113,7 @@ def chat_once(model, tok, history, max_new_tokens=256, temperature=0.7, top_p=0.
 
 def main():
     ap = argparse.ArgumentParser()
+    ap.add_argument("--cuda_device", type=str, default=None, help="CUDA device to use (e.g., 0 or 0,1)")
     ap.add_argument("--exp_prefix", required=True, help="예: my-exp")
     ap.add_argument("--root", default="experiments")
     ap.add_argument("--subname", default="SEQ_full")
@@ -127,6 +128,10 @@ def main():
     ap.add_argument("--repetition_penalty", type=float, default=1.05)
     ap.add_argument("--dry_run", action="store_true", help="선택된 경로만 출력하고 종료")
     args = ap.parse_args()
+
+    # CUDA device 설정
+    if args.cuda_device is not None:
+        os.environ["CUDA_VISIBLE_DEVICES"] = args.cuda_device
 
     run_dir, ckpt = find_latest_ckpt(args.root, args.exp_prefix, args.subname)
     print(f"[info] run_dir = {run_dir}")

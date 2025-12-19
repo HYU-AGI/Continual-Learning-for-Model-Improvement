@@ -2,8 +2,8 @@
 Implements Incremental Learning procedure.
 """
 import os,sys
-os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
-os.environ["CUDA_VISIBLE_DEVICES"] = "1"
+# os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
+# os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 # PyTorch 초기화 전에 환경 변수 설정
 os.environ['TOKENIZERS_PARALLELISM'] = 'false'
 # CUDA 메모리 할당 설정을 안전하게 설정
@@ -45,6 +45,10 @@ from utils.dataset import get_dataset
 
 
 def main_cl(params):
+    
+    # CUDA device 설정 (파라미터가 있으면 설정)
+    if hasattr(params, 'cuda_device') and params.cuda_device is not None:
+        os.environ["CUDA_VISIBLE_DEVICES"] = params.cuda_device
     
     # ------------------------------------------------------------------------------------------------------------------------=====
     
